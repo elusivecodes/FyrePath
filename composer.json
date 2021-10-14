@@ -1,5 +1,5 @@
 {
-    "name": "frost/fyre-path",
+    "name": "fyre/path",
     "description": "A path utility library.",
     "type": "library",
     "license": "MIT",
