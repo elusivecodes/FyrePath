@@ -3,7 +3,7 @@
 namespace Tests;
 
 use
-    Fyre\Path;
+    Fyre\Utility\Path;
 
 trait ParseTest
 {

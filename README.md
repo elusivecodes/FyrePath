@@ -20,7 +20,7 @@ composer install fyre/path
 In PHP:
 
 ```php
-use Fyre\Path;
+use Fyre\Utility\Path;
 ```
 
 
