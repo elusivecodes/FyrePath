@@ -14,7 +14,7 @@
 **Using Composer**
 
 ```
-composer install fyre/path
+composer require fyre/path
 ```
 
 In PHP:
