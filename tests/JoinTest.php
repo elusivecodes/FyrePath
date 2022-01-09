@@ -13,7 +13,7 @@ trait JoinTest
 
     public function testJoinWithFileName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::join('file.ext')
         );
@@ -21,7 +21,7 @@ trait JoinTest
 
     public function testJoinWithDir(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'dir/file.ext',
             Path::join('dir', 'file.ext')
         );
@@ -29,7 +29,7 @@ trait JoinTest
 
     public function testJoinWithDirs(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir/file.ext',
             Path::join('sub', 'dir', 'file.ext')
         );
@@ -37,7 +37,7 @@ trait JoinTest
 
     public function testJoinWithDeepDir(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir/file.ext',
             Path::join('sub/dir', 'file.ext')
         );
@@ -45,7 +45,7 @@ trait JoinTest
 
     public function testJoinWithFullPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '/sub/dir/file.ext',
             Path::join('/sub', 'dir', 'file.ext')
         );
@@ -53,7 +53,7 @@ trait JoinTest
 
     public function testJoinWithParentPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir/file.ext',
             Path::join('test', '..', 'sub/dir', 'file.ext')
         );
@@ -63,7 +63,7 @@ trait JoinTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/sub/dir/file.ext',
             Path::join('.', 'sub', 'dir', 'file.ext')
         );
@@ -71,7 +71,7 @@ trait JoinTest
 
     public function testJoinWithEmptyString(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '.',
             Path::join('')
         );
@@ -79,7 +79,7 @@ trait JoinTest
 
     public function testJoinWithNoArguments(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '.',
             Path::join()
         );

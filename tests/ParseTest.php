@@ -10,7 +10,7 @@ trait ParseTest
 
     public function testParseWithFileName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'dirname' => '.',
                 'basename' => 'file.ext',
@@ -23,7 +23,7 @@ trait ParseTest
 
     public function testParseWithPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'dirname' => 'dir',
                 'basename' => 'file.ext',
@@ -36,7 +36,7 @@ trait ParseTest
 
     public function testParseWithDeepPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'dirname' => 'sub/dir',
                 'basename' => 'file.ext',
@@ -49,7 +49,7 @@ trait ParseTest
 
     public function testParseWithFullPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'dirname' => '/sub/dir',
                 'basename' => 'file.ext',
@@ -62,7 +62,7 @@ trait ParseTest
 
     public function testParseWithMultipleExtensions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'dirname' => 'dir',
                 'basename' => 'file.tst.ext',
@@ -75,7 +75,7 @@ trait ParseTest
 
     public function testParseWithNoExtension(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'dirname' => 'dir',
                 'basename' => 'file',
@@ -87,7 +87,7 @@ trait ParseTest
 
     public function testParseWithEmptyString(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'basename' => '',
                 'filename' => ''

@@ -10,7 +10,7 @@ trait BaseNameTest
 
     public function testBaseNameWithFileName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::baseName('file.ext')
         );
@@ -18,7 +18,7 @@ trait BaseNameTest
 
     public function testBaseNameWithPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::baseName('dir/file.ext')
         );
@@ -26,7 +26,7 @@ trait BaseNameTest
 
     public function testBaseNameWithDeepPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::baseName('sub/dir/file.ext')
         );
@@ -34,7 +34,7 @@ trait BaseNameTest
 
     public function testBaseNameWithFullPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::baseName('/sub/dir/file.ext')
         );
@@ -42,7 +42,7 @@ trait BaseNameTest
 
     public function testBaseNameWithMultipleExtensions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.tst.ext',
             Path::baseName('dir/file.tst.ext')
         );
@@ -50,7 +50,7 @@ trait BaseNameTest
 
     public function testBaseNameWithNoExtension(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file',
             Path::baseName('dir/file')
         );
@@ -58,7 +58,7 @@ trait BaseNameTest
 
     public function testBaseNameWithEmptyString(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '',
             Path::baseName('')
         );

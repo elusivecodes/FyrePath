@@ -10,7 +10,7 @@ trait ExtensionTest
 
     public function testExtensionWithFileName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ext',
             Path::extension('file.ext')
         );
@@ -18,7 +18,7 @@ trait ExtensionTest
 
     public function testExtensionWithPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ext',
             Path::extension('dir/file.ext')
         );
@@ -26,7 +26,7 @@ trait ExtensionTest
 
     public function testExtensionWithDeepPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ext',
             Path::extension('sub/dir/file.ext')
         );
@@ -34,7 +34,7 @@ trait ExtensionTest
 
     public function testExtensionWithFullPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ext',
             Path::extension('/sub/dir/file.ext')
         );
@@ -42,7 +42,7 @@ trait ExtensionTest
 
     public function testExtensionWithMultipleExtensions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ext',
             Path::extension('dir/file.tst.ext')
         );
@@ -50,7 +50,7 @@ trait ExtensionTest
 
     public function testExtensionWithNoExtension(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '',
             Path::extension('file')
         );
@@ -58,7 +58,7 @@ trait ExtensionTest
 
     public function testExtensionWithEmptyString(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '',
             Path::extension('')
         );

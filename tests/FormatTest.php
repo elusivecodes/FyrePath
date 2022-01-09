@@ -10,7 +10,7 @@ trait FormatTest
 
     public function testFormat(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir/file.ext',
             Path::format(['dirname' => 'sub/dir', 'basename' => 'file.ext'])
         );
@@ -18,7 +18,7 @@ trait FormatTest
 
     public function testFormatEmptyDirName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::format(['basename' => 'file.ext'])
         );
@@ -26,7 +26,7 @@ trait FormatTest
 
     public function testFormatEmptyFileName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir',
             Path::format(['dirname' => 'sub/dir'])
         );

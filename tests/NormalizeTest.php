@@ -13,7 +13,7 @@ trait NormalizeTest
 
     public function testNormalizeWithFileName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'file.ext',
             Path::normalize('file.ext')
         );
@@ -21,7 +21,7 @@ trait NormalizeTest
 
     public function testNormalizeWithPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'dir/file.ext',
             Path::normalize('dir/file.ext')
         );
@@ -29,7 +29,7 @@ trait NormalizeTest
 
     public function testNormalizeWithDeepPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir/file.ext',
             Path::normalize('sub/dir/file.ext')
         );
@@ -37,7 +37,7 @@ trait NormalizeTest
 
     public function testNormalizeWithFullPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '/sub/dir/file.ext',
             Path::normalize('/sub/dir/file.ext')
         );
@@ -45,7 +45,7 @@ trait NormalizeTest
 
     public function testNormalizeWithParentPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'sub/dir/file.ext',
             Path::normalize('test/../sub/dir/file.ext')
         );
@@ -55,7 +55,7 @@ trait NormalizeTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/sub/dir/file.ext',
             Path::normalize('./sub/dir/file.ext')
         );
@@ -63,7 +63,7 @@ trait NormalizeTest
 
     public function testNormalizeWithEmptyString(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '.',
             Path::normalize('')
         );
@@ -71,7 +71,7 @@ trait NormalizeTest
 
     public function testNormalizeWithNoArguments(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '.',
             Path::normalize()
         );

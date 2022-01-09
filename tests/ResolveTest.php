@@ -15,7 +15,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/file.ext',
             Path::resolve('file.ext')
         );
@@ -25,7 +25,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/dir/file.ext',
             Path::resolve('dir', 'file.ext')
         );
@@ -35,7 +35,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/sub/dir/file.ext',
             Path::resolve('sub', 'dir', 'file.ext')
         );
@@ -45,7 +45,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/sub/dir/file.ext',
             Path::resolve('sub/dir', 'file.ext')
         );
@@ -53,7 +53,7 @@ trait ResolveTest
 
     public function testResolveWithFullPath(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '/sub/dir/file.ext',
             Path::resolve('/sub', 'dir', 'file.ext')
         );
@@ -61,7 +61,7 @@ trait ResolveTest
 
     public function testResolveWithFullPaths(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             '/dir/file.ext',
             Path::resolve('/sub', '/dir', 'file.ext')
         );
@@ -71,7 +71,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/sub/dir/file.ext',
             Path::resolve('test', '..', 'sub/dir', 'file.ext')
         );
@@ -81,7 +81,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd.'/sub/dir/file.ext',
             Path::resolve('.', 'sub', 'dir', 'file.ext')
         );
@@ -91,7 +91,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd,
             Path::resolve('')
         );
@@ -101,7 +101,7 @@ trait ResolveTest
     {
         $cwd = getcwd();
 
-        $this->assertEquals(
+        $this->assertSame(
             $cwd,
             Path::resolve()
         );
