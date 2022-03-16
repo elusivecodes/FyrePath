@@ -96,7 +96,7 @@ abstract class Path
     public static function join(string ...$paths): string
     {
         $paths = array_map(
-            fn($path) => rtrim($path, static::SEPARATOR),
+            fn(string $path): string => rtrim($path, static::SEPARATOR),
             array_filter($paths)
         );
         $path = implode(static::SEPARATOR, $paths);
