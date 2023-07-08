@@ -1,6 +1,6 @@
 # FyrePath
 
-**FyrePath** is a free, path library for *PHP*.
+**FyrePath** is a free, open-source path library for *PHP*.
 
 
 ## Table Of Contents

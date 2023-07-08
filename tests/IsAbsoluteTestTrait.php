@@ -2,10 +2,9 @@
 
 namespace Tests;
 
-use
-    Fyre\Utility\Path;
+use Fyre\Utility\Path;
 
-trait IsAbsoluteTest
+trait IsAbsoluteTestTrait
 {
 
     public function testIsAbsolute(): void

@@ -3,22 +3,21 @@ declare(strict_types=1);
 
 namespace Fyre\Utility;
 
-use const
-    PATHINFO_DIRNAME,
-    PATHINFO_BASENAME,
-    PATHINFO_FILENAME,
-    PATHINFO_EXTENSION;
+use const DIRECTORY_SEPARATOR;
+use const PATHINFO_DIRNAME;
+use const PATHINFO_BASENAME;
+use const PATHINFO_FILENAME;
+use const PATHINFO_EXTENSION;
 
-use function
-    array_map,
-    array_pop,
-    array_reverse,
-    array_unshift,
-    getcwd,
-    explode,
-    implode,
-    pathinfo,
-    rtrim;
+use function array_map;
+use function array_pop;
+use function array_reverse;
+use function array_unshift;
+use function getcwd;
+use function explode;
+use function implode;
+use function pathinfo;
+use function rtrim;
 
 /**
  * Path

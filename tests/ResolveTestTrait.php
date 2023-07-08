@@ -2,13 +2,11 @@
 
 namespace Tests;
 
-use
-    Fyre\Utility\Path;
+use Fyre\Utility\Path;
 
-use function
-    getcwd;
+use function getcwd;
 
-trait ResolveTest
+trait ResolveTestTrait
 {
 
     public function testResolveWithFileName(): void

@@ -2,10 +2,9 @@
 
 namespace Tests;
 
-use
-    Fyre\Utility\Path;
+use Fyre\Utility\Path;
 
-trait ParseTest
+trait ParseTestTrait
 {
 
     public function testParseWithFileName(): void

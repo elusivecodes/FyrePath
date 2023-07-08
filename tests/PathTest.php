@@ -9,16 +9,15 @@ use PHPUnit\Framework\TestCase;
 final class PathTest extends TestCase
 {
 
-    use
-        BaseNameTest,
-        DirNameTest,
-        ExtensionTest,
-        FileNameTest,
-        FormatTest,
-        IsAbsoluteTest,
-        JoinTest,
-        NormalizeTest,
-        ParseTest,
-        ResolveTest;
+    use BaseNameTestTrait;
+    use DirNameTestTrait;
+    use ExtensionTestTrait;
+    use FileNameTestTrait;
+    use FormatTestTrait;
+    use IsAbsoluteTestTrait;
+    use JoinTestTrait;
+    use NormalizeTestTrait;
+    use ParseTestTrait;
+    use ResolveTestTrait;
 
 }
