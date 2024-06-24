@@ -6,28 +6,27 @@ use Fyre\Utility\Path;
 
 trait ExtensionTestTrait
 {
+    public function testExtensionWithDeepPath(): void
+    {
+        $this->assertSame(
+            'ext',
+            Path::extension('sub/dir/file.ext')
+        );
+    }
+
+    public function testExtensionWithEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            Path::extension('')
+        );
+    }
 
     public function testExtensionWithFileName(): void
     {
         $this->assertSame(
             'ext',
             Path::extension('file.ext')
-        );
-    }
-
-    public function testExtensionWithPath(): void
-    {
-        $this->assertSame(
-            'ext',
-            Path::extension('dir/file.ext')
-        );
-    }
-
-    public function testExtensionWithDeepPath(): void
-    {
-        $this->assertSame(
-            'ext',
-            Path::extension('sub/dir/file.ext')
         );
     }
 
@@ -55,12 +54,11 @@ trait ExtensionTestTrait
         );
     }
 
-    public function testExtensionWithEmptyString(): void
+    public function testExtensionWithPath(): void
     {
         $this->assertSame(
-            '',
-            Path::extension('')
+            'ext',
+            Path::extension('dir/file.ext')
         );
     }
-
 }

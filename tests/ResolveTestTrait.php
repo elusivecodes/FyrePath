@@ -8,14 +8,23 @@ use function getcwd;
 
 trait ResolveTestTrait
 {
-
-    public function testResolveWithFileName(): void
+    public function testResolveWithCurrentPath(): void
     {
         $cwd = getcwd();
 
         $this->assertSame(
-            $cwd.'/file.ext',
-            Path::resolve('file.ext')
+            $cwd.'/sub/dir/file.ext',
+            Path::resolve('.', 'sub', 'dir', 'file.ext')
+        );
+    }
+
+    public function testResolveWithDeepDir(): void
+    {
+        $cwd = getcwd();
+
+        $this->assertSame(
+            $cwd.'/sub/dir/file.ext',
+            Path::resolve('sub/dir', 'file.ext')
         );
     }
 
@@ -39,13 +48,23 @@ trait ResolveTestTrait
         );
     }
 
-    public function testResolveWithDeepDir(): void
+    public function testResolveWithEmptyString(): void
     {
         $cwd = getcwd();
 
         $this->assertSame(
-            $cwd.'/sub/dir/file.ext',
-            Path::resolve('sub/dir', 'file.ext')
+            $cwd,
+            Path::resolve('')
+        );
+    }
+
+    public function testResolveWithFileName(): void
+    {
+        $cwd = getcwd();
+
+        $this->assertSame(
+            $cwd.'/file.ext',
+            Path::resolve('file.ext')
         );
     }
 
@@ -65,36 +84,6 @@ trait ResolveTestTrait
         );
     }
 
-    public function testResolveWithParentPath(): void
-    {
-        $cwd = getcwd();
-
-        $this->assertSame(
-            $cwd.'/sub/dir/file.ext',
-            Path::resolve('test', '..', 'sub/dir', 'file.ext')
-        );
-    }
-
-    public function testResolveWithCurrentPath(): void
-    {
-        $cwd = getcwd();
-
-        $this->assertSame(
-            $cwd.'/sub/dir/file.ext',
-            Path::resolve('.', 'sub', 'dir', 'file.ext')
-        );
-    }
-
-    public function testResolveWithEmptyString(): void
-    {
-        $cwd = getcwd();
-
-        $this->assertSame(
-            $cwd,
-            Path::resolve('')
-        );
-    }
-
     public function testResolveWithNoArguments(): void
     {
         $cwd = getcwd();
@@ -105,4 +94,13 @@ trait ResolveTestTrait
         );
     }
 
+    public function testResolveWithParentPath(): void
+    {
+        $cwd = getcwd();
+
+        $this->assertSame(
+            $cwd.'/sub/dir/file.ext',
+            Path::resolve('test', '..', 'sub/dir', 'file.ext')
+        );
+    }
 }

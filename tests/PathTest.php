@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 final class PathTest extends TestCase
 {
-
     use BaseNameTestTrait;
     use DirNameTestTrait;
     use ExtensionTestTrait;

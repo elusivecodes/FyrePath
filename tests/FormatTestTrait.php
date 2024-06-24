@@ -6,7 +6,6 @@ use Fyre\Utility\Path;
 
 trait FormatTestTrait
 {
-
     public function testFormat(): void
     {
         $this->assertSame(
@@ -30,5 +29,4 @@ trait FormatTestTrait
             Path::format(['dirname' => 'sub/dir'])
         );
     }
-
 }

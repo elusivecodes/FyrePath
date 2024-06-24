@@ -6,28 +6,27 @@ use Fyre\Utility\Path;
 
 trait FileNameTestTrait
 {
+    public function testFileNameWithDeepPath(): void
+    {
+        $this->assertSame(
+            'file',
+            Path::fileName('sub/dir/file.ext')
+        );
+    }
+
+    public function testFileNameWithEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            Path::fileName('')
+        );
+    }
 
     public function testFileNameWithFileName(): void
     {
         $this->assertSame(
             'file',
             Path::fileName('file.ext')
-        );
-    }
-
-    public function testFileNameWithPath(): void
-    {
-        $this->assertSame(
-            'file',
-            Path::fileName('dir/file.ext')
-        );
-    }
-
-    public function testFileNameWithDeepPath(): void
-    {
-        $this->assertSame(
-            'file',
-            Path::fileName('sub/dir/file.ext')
         );
     }
 
@@ -55,12 +54,11 @@ trait FileNameTestTrait
         );
     }
 
-    public function testFileNameWithEmptyString(): void
+    public function testFileNameWithPath(): void
     {
         $this->assertSame(
-            '',
-            Path::fileName('')
+            'file',
+            Path::fileName('dir/file.ext')
         );
     }
-
 }

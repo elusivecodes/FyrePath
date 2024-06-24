@@ -6,7 +6,6 @@ use Fyre\Utility\Path;
 
 trait IsAbsoluteTestTrait
 {
-
     public function testIsAbsolute(): void
     {
         $this->assertTrue(
@@ -20,5 +19,4 @@ trait IsAbsoluteTestTrait
             Path::isAbsolute('path/to/file')
         );
     }
-
 }

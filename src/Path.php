@@ -3,28 +3,27 @@ declare(strict_types=1);
 
 namespace Fyre\Utility;
 
-use const DIRECTORY_SEPARATOR;
-use const PATHINFO_DIRNAME;
-use const PATHINFO_BASENAME;
-use const PATHINFO_FILENAME;
-use const PATHINFO_EXTENSION;
-
 use function array_map;
 use function array_pop;
 use function array_reverse;
 use function array_unshift;
-use function getcwd;
 use function explode;
+use function getcwd;
 use function implode;
 use function pathinfo;
 use function rtrim;
+
+use const DIRECTORY_SEPARATOR;
+use const PATHINFO_BASENAME;
+use const PATHINFO_DIRNAME;
+use const PATHINFO_EXTENSION;
+use const PATHINFO_FILENAME;
 
 /**
  * Path
  */
 abstract class Path
 {
-
     public const SEPARATOR = DIRECTORY_SEPARATOR;
 
     /**
@@ -115,7 +114,7 @@ abstract class Path
         }
 
         $segments = explode(static::SEPARATOR, $path);
-        $newPath  = [];
+        $newPath = [];
         foreach ($segments as $segment) {
             if ($segment === '.') {
                 if ($newPath === []) {
@@ -176,5 +175,4 @@ abstract class Path
 
         return static::join(...$newPath);
     }
-
 }

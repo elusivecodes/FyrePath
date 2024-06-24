@@ -8,12 +8,21 @@ use function getcwd;
 
 trait JoinTestTrait
 {
+    public function testJoinWithCurrentPath(): void
+    {
+        $cwd = getcwd();
 
-    public function testJoinWithFileName(): void
+        $this->assertSame(
+            $cwd.'/sub/dir/file.ext',
+            Path::join('.', 'sub', 'dir', 'file.ext')
+        );
+    }
+
+    public function testJoinWithDeepDir(): void
     {
         $this->assertSame(
-            'file.ext',
-            Path::join('file.ext')
+            'sub/dir/file.ext',
+            Path::join('sub/dir', 'file.ext')
         );
     }
 
@@ -33,11 +42,19 @@ trait JoinTestTrait
         );
     }
 
-    public function testJoinWithDeepDir(): void
+    public function testJoinWithEmptyString(): void
     {
         $this->assertSame(
-            'sub/dir/file.ext',
-            Path::join('sub/dir', 'file.ext')
+            '.',
+            Path::join('')
+        );
+    }
+
+    public function testJoinWithFileName(): void
+    {
+        $this->assertSame(
+            'file.ext',
+            Path::join('file.ext')
         );
     }
 
@@ -49,32 +66,6 @@ trait JoinTestTrait
         );
     }
 
-    public function testJoinWithParentPath(): void
-    {
-        $this->assertSame(
-            'sub/dir/file.ext',
-            Path::join('test', '..', 'sub/dir', 'file.ext')
-        );
-    }
-
-    public function testJoinWithCurrentPath(): void
-    {
-        $cwd = getcwd();
-
-        $this->assertSame(
-            $cwd.'/sub/dir/file.ext',
-            Path::join('.', 'sub', 'dir', 'file.ext')
-        );
-    }
-
-    public function testJoinWithEmptyString(): void
-    {
-        $this->assertSame(
-            '.',
-            Path::join('')
-        );
-    }
-
     public function testJoinWithNoArguments(): void
     {
         $this->assertSame(
@@ -83,4 +74,11 @@ trait JoinTestTrait
         );
     }
 
+    public function testJoinWithParentPath(): void
+    {
+        $this->assertSame(
+            'sub/dir/file.ext',
+            Path::join('test', '..', 'sub/dir', 'file.ext')
+        );
+    }
 }

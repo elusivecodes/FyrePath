@@ -6,6 +6,29 @@ use Fyre\Utility\Path;
 
 trait ParseTestTrait
 {
+    public function testParseWithDeepPath(): void
+    {
+        $this->assertSame(
+            [
+                'dirname' => 'sub/dir',
+                'basename' => 'file.ext',
+                'extension' => 'ext',
+                'filename' => 'file'
+            ],
+            Path::parse('sub/dir/file.ext')
+        );
+    }
+
+    public function testParseWithEmptyString(): void
+    {
+        $this->assertSame(
+            [
+                'basename' => '',
+                'filename' => ''
+            ],
+            Path::parse('')
+        );
+    }
 
     public function testParseWithFileName(): void
     {
@@ -17,32 +40,6 @@ trait ParseTestTrait
                 'filename' => 'file'
             ],
             Path::parse('file.ext')
-        );
-    }
-
-    public function testParseWithPath(): void
-    {
-        $this->assertSame(
-            [
-                'dirname' => 'dir',
-                'basename' => 'file.ext',
-                'extension' => 'ext',
-                'filename' => 'file'
-            ],
-            Path::parse('dir/file.ext')
-        );
-    }
-
-    public function testParseWithDeepPath(): void
-    {
-        $this->assertSame(
-            [
-                'dirname' => 'sub/dir',
-                'basename' => 'file.ext',
-                'extension' => 'ext',
-                'filename' => 'file'
-            ],
-            Path::parse('sub/dir/file.ext')
         );
     }
 
@@ -84,15 +81,16 @@ trait ParseTestTrait
         );
     }
 
-    public function testParseWithEmptyString(): void
+    public function testParseWithPath(): void
     {
         $this->assertSame(
             [
-                'basename' => '',
-                'filename' => ''
+                'dirname' => 'dir',
+                'basename' => 'file.ext',
+                'extension' => 'ext',
+                'filename' => 'file'
             ],
-            Path::parse('')
+            Path::parse('dir/file.ext')
         );
     }
-
 }

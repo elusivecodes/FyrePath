@@ -8,20 +8,13 @@ use function getcwd;
 
 trait NormalizeTestTrait
 {
-
-    public function testNormalizeWithFileName(): void
+    public function testNormalizeWithCurrentPath(): void
     {
-        $this->assertSame(
-            'file.ext',
-            Path::normalize('file.ext')
-        );
-    }
+        $cwd = getcwd();
 
-    public function testNormalizeWithPath(): void
-    {
         $this->assertSame(
-            'dir/file.ext',
-            Path::normalize('dir/file.ext')
+            $cwd.'/sub/dir/file.ext',
+            Path::normalize('./sub/dir/file.ext')
         );
     }
 
@@ -33,37 +26,27 @@ trait NormalizeTestTrait
         );
     }
 
-    public function testNormalizeWithFullPath(): void
-    {
-        $this->assertSame(
-            '/sub/dir/file.ext',
-            Path::normalize('/sub/dir/file.ext')
-        );
-    }
-
-    public function testNormalizeWithParentPath(): void
-    {
-        $this->assertSame(
-            'sub/dir/file.ext',
-            Path::normalize('test/../sub/dir/file.ext')
-        );
-    }
-
-    public function testNormalizeWithCurrentPath(): void
-    {
-        $cwd = getcwd();
-
-        $this->assertSame(
-            $cwd.'/sub/dir/file.ext',
-            Path::normalize('./sub/dir/file.ext')
-        );
-    }
-
     public function testNormalizeWithEmptyString(): void
     {
         $this->assertSame(
             '.',
             Path::normalize('')
+        );
+    }
+
+    public function testNormalizeWithFileName(): void
+    {
+        $this->assertSame(
+            'file.ext',
+            Path::normalize('file.ext')
+        );
+    }
+
+    public function testNormalizeWithFullPath(): void
+    {
+        $this->assertSame(
+            '/sub/dir/file.ext',
+            Path::normalize('/sub/dir/file.ext')
         );
     }
 
@@ -75,4 +58,19 @@ trait NormalizeTestTrait
         );
     }
 
+    public function testNormalizeWithParentPath(): void
+    {
+        $this->assertSame(
+            'sub/dir/file.ext',
+            Path::normalize('test/../sub/dir/file.ext')
+        );
+    }
+
+    public function testNormalizeWithPath(): void
+    {
+        $this->assertSame(
+            'dir/file.ext',
+            Path::normalize('dir/file.ext')
+        );
+    }
 }
