@@ -28,6 +28,7 @@ abstract class Path
 
     /**
      * Get the base name from a file path.
+     *
      * @param string $path The file path.
      * @return string The base name.
      */
@@ -38,6 +39,7 @@ abstract class Path
 
     /**
      * Get the directory name from a file path.
+     *
      * @param string $path The file path.
      * @return string The directory name.
      */
@@ -48,6 +50,7 @@ abstract class Path
 
     /**
      * Get the file extension from a file path.
+     *
      * @param string $path The file path.
      * @return string The file extension.
      */
@@ -58,6 +61,7 @@ abstract class Path
 
     /**
      * Get the file name from a file path.
+     *
      * @param string $path The file path.
      * @return string The file name.
      */
@@ -68,6 +72,7 @@ abstract class Path
 
     /**
      * Format path info as a file path.
+     *
      * @param array $pathInfo The path info.
      * @return string The file path.
      */
@@ -78,6 +83,7 @@ abstract class Path
 
     /**
      * Determine if a file path is absolute.
+     *
      * @param string $path The file path.
      * @return bool TRUE if the file path is absolute, otherwise FALSE.
      */
@@ -88,6 +94,7 @@ abstract class Path
 
     /**
      * Join path segments.
+     *
      * @param string ...$paths The path segments.
      * @param string The file path.
      */
@@ -104,6 +111,7 @@ abstract class Path
 
     /**
      * Normalize a file path.
+     *
      * @param string $path The file path.
      * @return string The normalized path.
      */
@@ -142,6 +150,7 @@ abstract class Path
 
     /**
      * Parse a file path.
+     *
      * @param string $path The file path.
      * @return array The path info.
      */
@@ -152,6 +161,7 @@ abstract class Path
 
     /**
      * Resolve a file path from path segments.
+     *
      * @param string ...$paths The path segments.
      * @param string The file path.
      */

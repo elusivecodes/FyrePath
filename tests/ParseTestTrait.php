@@ -13,7 +13,7 @@ trait ParseTestTrait
                 'dirname' => 'sub/dir',
                 'basename' => 'file.ext',
                 'extension' => 'ext',
-                'filename' => 'file'
+                'filename' => 'file',
             ],
             Path::parse('sub/dir/file.ext')
         );
@@ -24,7 +24,7 @@ trait ParseTestTrait
         $this->assertSame(
             [
                 'basename' => '',
-                'filename' => ''
+                'filename' => '',
             ],
             Path::parse('')
         );
@@ -37,7 +37,7 @@ trait ParseTestTrait
                 'dirname' => '.',
                 'basename' => 'file.ext',
                 'extension' => 'ext',
-                'filename' => 'file'
+                'filename' => 'file',
             ],
             Path::parse('file.ext')
         );
@@ -50,7 +50,7 @@ trait ParseTestTrait
                 'dirname' => '/sub/dir',
                 'basename' => 'file.ext',
                 'extension' => 'ext',
-                'filename' => 'file'
+                'filename' => 'file',
             ],
             Path::parse('/sub/dir/file.ext')
         );
@@ -63,7 +63,7 @@ trait ParseTestTrait
                 'dirname' => 'dir',
                 'basename' => 'file.tst.ext',
                 'extension' => 'ext',
-                'filename' => 'file.tst'
+                'filename' => 'file.tst',
             ],
             Path::parse('dir/file.tst.ext')
         );
@@ -75,7 +75,7 @@ trait ParseTestTrait
             [
                 'dirname' => 'dir',
                 'basename' => 'file',
-                'filename' => 'file'
+                'filename' => 'file',
             ],
             Path::parse('dir/file')
         );
@@ -88,7 +88,7 @@ trait ParseTestTrait
                 'dirname' => 'dir',
                 'basename' => 'file.ext',
                 'extension' => 'ext',
-                'filename' => 'file'
+                'filename' => 'file',
             ],
             Path::parse('dir/file.ext')
         );

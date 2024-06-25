@@ -18,5 +18,4 @@ final class PathTest extends TestCase
     use NormalizeTestTrait;
     use ParseTestTrait;
     use ResolveTestTrait;
-
 }
