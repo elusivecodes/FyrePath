@@ -81,4 +81,12 @@ trait JoinTestTrait
             Path::join('test', '..', 'sub/dir', 'file.ext')
         );
     }
+
+    public function testJoinWithTrailingSlash(): void
+    {
+        $this->assertSame(
+            '/sub/dir/',
+            Path::join('/sub', 'dir/')
+        );
+    }
 }

@@ -78,7 +78,7 @@ $path = Path::format($pathInfo);
 
 **Is Absolute**
 
-Determine if a file path is absolute.
+Determine whether a file path is absolute.
 
 - `$path` is the file path.
 

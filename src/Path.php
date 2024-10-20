@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Fyre\Utility;
 
-use function array_map;
+use function array_filter;
 use function array_pop;
 use function array_reverse;
 use function array_unshift;
@@ -11,7 +11,6 @@ use function explode;
 use function getcwd;
 use function implode;
 use function pathinfo;
-use function rtrim;
 
 use const DIRECTORY_SEPARATOR;
 use const PATHINFO_BASENAME;
@@ -78,18 +77,20 @@ abstract class Path
      */
     public static function format(array $pathInfo): string
     {
-        return static::join($pathInfo['dirname'] ?? '', $pathInfo['basename'] ?? '');
+        $path = array_filter([$pathInfo['dirname'] ?? '', $pathInfo['basename'] ?? '']);
+
+        return static::normalizeSegments($path);
     }
 
     /**
-     * Determine if a file path is absolute.
+     * Determine whether a file path is absolute.
      *
      * @param string $path The file path.
      * @return bool TRUE if the file path is absolute, otherwise FALSE.
      */
     public static function isAbsolute(string $path): bool
     {
-        return $path && $path[0] === static::SEPARATOR;
+        return $path && $path[0] === DIRECTORY_SEPARATOR;
     }
 
     /**
@@ -100,13 +101,13 @@ abstract class Path
      */
     public static function join(string ...$paths): string
     {
-        $paths = array_map(
-            fn(string $path): string => rtrim($path, static::SEPARATOR),
-            array_filter($paths)
-        );
-        $path = implode(static::SEPARATOR, $paths);
+        $paths = array_filter($paths);
 
-        return static::normalize($path);
+        if ($paths === []) {
+            return '.';
+        }
+
+        return static::normalizeSegments($paths);
     }
 
     /**
@@ -121,31 +122,9 @@ abstract class Path
             return '.';
         }
 
-        $segments = explode(static::SEPARATOR, $path);
-        $newPath = [];
-        foreach ($segments as $segment) {
-            if ($segment === '.') {
-                if ($newPath === []) {
-                    $dir = getcwd();
-                    $newPath = explode(static::SEPARATOR, $dir);
-                }
+        $segments = explode(DIRECTORY_SEPARATOR, $path);
 
-                continue;
-            }
-
-            if ($segment === '..' && $newPath !== []) {
-                $lastPath = array_pop($newPath);
-                if ($lastPath !== '..') {
-                    continue;
-                }
-
-                $newPath[] = $lastPath;
-            }
-
-            $newPath[] = $segment;
-        }
-
-        return implode(static::SEPARATOR, $newPath);
+        return static::normalizeSegments($segments);
     }
 
     /**
@@ -172,17 +151,57 @@ abstract class Path
         }
 
         $paths = array_reverse($paths);
-        $newPath = [];
+        $pathSegments = [];
         foreach ($paths as $path) {
-            array_unshift($newPath, $path);
-            $testPath = static::join(...$newPath);
-            if (static::isAbsolute($testPath)) {
-                return $testPath;
+            if (!$path) {
+                continue;
             }
+
+            array_unshift($pathSegments, $path);
+
+            if ($path[0] !== DIRECTORY_SEPARATOR) {
+                continue;
+            }
+
+            return static::normalizeSegments($pathSegments);
         }
 
-        array_unshift($newPath, '.');
+        array_unshift($pathSegments, '.');
 
-        return static::join(...$newPath);
+        return static::normalizeSegments($pathSegments);
+    }
+
+    /**
+     * Normalize the path segments.
+     *
+     * @param array $segments The path segments.
+     * @return string The normalized path.
+     */
+    protected static function normalizeSegments(array $segments): string
+    {
+        $newPath = [];
+        foreach ($segments as $segment) {
+            if ($segment === '.') {
+                if ($newPath === []) {
+                    $dir = getcwd();
+                    $newPath = explode(DIRECTORY_SEPARATOR, $dir);
+                }
+
+                continue;
+            }
+
+            if ($segment === '..' && $newPath !== []) {
+                $lastPath = array_pop($newPath);
+                if ($lastPath !== '..') {
+                    continue;
+                }
+
+                $newPath[] = $lastPath;
+            }
+
+            $newPath[] = $segment;
+        }
+
+        return implode(DIRECTORY_SEPARATOR, $newPath);
     }
 }

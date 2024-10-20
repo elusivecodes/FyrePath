@@ -73,4 +73,12 @@ trait NormalizeTestTrait
             Path::normalize('dir/file.ext')
         );
     }
+
+    public function testNormalizeWithTrailingSlash(): void
+    {
+        $this->assertSame(
+            '/sub/dir/',
+            Path::normalize('/sub/dir/')
+        );
+    }
 }
