@@ -30,7 +30,7 @@ use Fyre\Utility\Path;
 
 Get the base name from a file path.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $baseName = Path::baseName($path);
@@ -40,7 +40,7 @@ $baseName = Path::baseName($path);
 
 Get the directory name from a file path.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $dirName = Path::dirName($path);
@@ -50,7 +50,7 @@ $dirName = Path::dirName($path);
 
 Get the file extension from a file path.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $extension = Path::extension($path);
@@ -60,7 +60,7 @@ $extension = Path::extension($path);
 
 Get the file name from a file path.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $fileName = Path::fileName($path);
@@ -80,7 +80,7 @@ $path = Path::format($pathInfo);
 
 Determine whether a file path is absolute.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $isAbsolute = Path::isAbsolute($path);
@@ -100,7 +100,7 @@ $path = Path::join(...$paths);
 
 Normalize a file path.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $normalized = Path::normalize($path);
@@ -110,7 +110,7 @@ $normalized = Path::normalize($path);
 
 Parse a file path.
 
-- `$path` is the file path.
+- `$path` is a string representing the file path.
 
 ```php
 $pathInfo = Path::parse($path);
