@@ -77,9 +77,7 @@ abstract class Path
      */
     public static function format(array $pathInfo): string
     {
-        $path = array_filter([$pathInfo['dirname'] ?? '', $pathInfo['basename'] ?? '']);
-
-        return static::normalizeSegments($path);
+        return static::join($pathInfo['dirname'] ?? '', $pathInfo['basename'] ?? '');
     }
 
     /**
@@ -102,12 +100,9 @@ abstract class Path
     public static function join(string ...$paths): string
     {
         $paths = array_filter($paths);
+        $path = implode(DIRECTORY_SEPARATOR, $paths);
 
-        if ($paths === []) {
-            return '.';
-        }
-
-        return static::normalizeSegments($paths);
+        return static::normalize($path);
     }
 
     /**
@@ -124,7 +119,30 @@ abstract class Path
 
         $segments = explode(DIRECTORY_SEPARATOR, $path);
 
-        return static::normalizeSegments($segments);
+        $newPath = [];
+        foreach ($segments as $segment) {
+            if ($segment === '.') {
+                if ($newPath === []) {
+                    $dir = getcwd();
+                    $newPath = explode(DIRECTORY_SEPARATOR, $dir);
+                }
+
+                continue;
+            }
+
+            if ($segment === '..' && $newPath !== []) {
+                $lastPath = array_pop($newPath);
+                if ($lastPath !== '..') {
+                    continue;
+                }
+
+                $newPath[] = $lastPath;
+            }
+
+            $newPath[] = $segment;
+        }
+
+        return implode(DIRECTORY_SEPARATOR, $newPath);
     }
 
     /**
@@ -163,45 +181,11 @@ abstract class Path
                 continue;
             }
 
-            return static::normalizeSegments($pathSegments);
+            return static::join(...$pathSegments);
         }
 
         array_unshift($pathSegments, '.');
 
-        return static::normalizeSegments($pathSegments);
-    }
-
-    /**
-     * Normalize the path segments.
-     *
-     * @param array $segments The path segments.
-     * @return string The normalized path.
-     */
-    protected static function normalizeSegments(array $segments): string
-    {
-        $newPath = [];
-        foreach ($segments as $segment) {
-            if ($segment === '.') {
-                if ($newPath === []) {
-                    $dir = getcwd();
-                    $newPath = explode(DIRECTORY_SEPARATOR, $dir);
-                }
-
-                continue;
-            }
-
-            if ($segment === '..' && $newPath !== []) {
-                $lastPath = array_pop($newPath);
-                if ($lastPath !== '..') {
-                    continue;
-                }
-
-                $newPath[] = $lastPath;
-            }
-
-            $newPath[] = $segment;
-        }
-
-        return implode(DIRECTORY_SEPARATOR, $newPath);
+        return static::join(...$pathSegments);
     }
 }
