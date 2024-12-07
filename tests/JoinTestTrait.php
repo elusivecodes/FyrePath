@@ -86,7 +86,7 @@ trait JoinTestTrait
     {
         $this->assertSame(
             '/sub/dir/',
-            Path::join('/sub', 'dir/')
+            Path::join('/sub/', 'dir/')
         );
     }
 }

@@ -7,6 +7,7 @@ use function array_filter;
 use function array_pop;
 use function array_reverse;
 use function array_unshift;
+use function count;
 use function explode;
 use function getcwd;
 use function implode;
@@ -120,7 +121,7 @@ abstract class Path
         $segments = explode(DIRECTORY_SEPARATOR, $path);
 
         $newPath = [];
-        foreach ($segments as $segment) {
+        foreach ($segments as $i => $segment) {
             if ($segment === '.') {
                 if ($newPath === []) {
                     $dir = getcwd();
@@ -137,6 +138,10 @@ abstract class Path
                 }
 
                 $newPath[] = $lastPath;
+            }
+
+            if ($segment === '' && $newPath !== [] && $i < count($segments) - 1) {
+                continue;
             }
 
             $newPath[] = $segment;
