@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Fyre\Utility;
 
+use Fyre\Utility\Traits\MacroTrait;
+
 use function array_filter;
 use function array_pop;
 use function array_reverse;
@@ -24,6 +26,8 @@ use const PATHINFO_FILENAME;
  */
 abstract class Path
 {
+    use MacroTrait;
+
     public const SEPARATOR = DIRECTORY_SEPARATOR;
 
     /**
