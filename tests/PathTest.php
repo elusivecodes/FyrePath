@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use Fyre\Utility\Path;
-use Fyre\Utility\Traits\MacroTrait;
+use Fyre\Utility\Traits\StaticMacroTrait;
 use PHPUnit\Framework\TestCase;
 
 use function class_uses;
@@ -26,7 +26,7 @@ final class PathTest extends TestCase
     public function testMacroable(): void
     {
         $this->assertContains(
-            MacroTrait::class,
+            StaticMacroTrait::class,
             class_uses(Path::class)
         );
     }
